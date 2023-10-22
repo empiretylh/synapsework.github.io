@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -10,4 +14,25 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.markdown-editor {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+}
+
+.markdown-editor textarea {
+  flex: 1;
+  height: 400px;
+  padding: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 0.25rem;
+}
+
+.markdown-editor .react-markdown {
+  flex: 1;
+  padding: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 0.25rem;
 }
