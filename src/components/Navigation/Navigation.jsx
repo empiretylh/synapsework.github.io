@@ -1,7 +1,7 @@
 import React from "react";
 import icon from "../../assets/icon.png";
 import { assets } from "../../data/data";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 //Create array contain name, img, link
 //Dashboard, Course, Lesson, Request, User,
@@ -63,12 +63,12 @@ const Navigation = () => {
       {/* Navgiation */}
       <ul className="mt-6 px-2">
         {nav.map((item, index) => (
-          <li
+          <Link
             key={index}
             className={`flex flex-col items-center py-2 px-2 my-2 rounded-lg hover:bg-gray-800 cursor-pointer ${
               item.link === nav_select && "bg-gray-800"
             }`}
-            onClick={() => (window.location.href = item.link)}
+          to={item.link}
           >
             <img
               src={item.img}
@@ -80,7 +80,7 @@ const Navigation = () => {
             >
               {item.name}
             </p>
-          </li>
+          </Link>
         ))}
       </ul>
     </div>

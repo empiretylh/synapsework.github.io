@@ -16,4 +16,10 @@ export const assets = {
     delete_icon : require("../assets/icon/delete.png"),
     search_icon : require("../assets/icon/search.png"),
 
+    download_icon : require("../assets/icon/file.png"),
+    newdocument_icon : require("../assets/icon/new-document.png"),
+    addcatgory_icon : require("../assets/icon/menu.png"),
+    markdown_icon : require("../assets/icon/markdown.png"),
+
+
 }

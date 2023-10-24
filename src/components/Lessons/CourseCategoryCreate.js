@@ -11,7 +11,7 @@ const CourseCategoryCreate = ({
   AfterCancel = () => {},
 }) => {
   const [showModal, setShowModal] = useState(false);
-  const [title, setTitle] = useState("abcd");
+  const [title, setTitle] = useState("");
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -65,15 +65,15 @@ const CourseCategoryCreate = ({
   return (
     <div className="realtive">
       <button
-        className="p-3 bg-slate-900 hover:bg-slate-700 rounded-lg text-white flex flex-row items-center text-sm"
+        className="p-2 bg-slate-900 hover:bg-slate-700 rounded-lg text-white flex flex-row items-center text-sm"
         onClick={() => setShowModal(true)}
+        title="Add Category"
       >
         <img
-          src={assets.add_icon}
-          className="w-5 h-5 mr-2 filter brightness-0 invert"
+          src={assets.addcatgory_icon}
+          className="w-7 h-7 filter brightness-0 invert"
           alt="add"
         />
-        <span>New Category</span>
       </button>
       <>
         {showModal && (
