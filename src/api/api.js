@@ -29,7 +29,27 @@ export const UpdateLesson = (data) => {
   return axios.put("api/editor/course/lesson/" + data.id, data);
 };
 
-
 export const CreateLesson = (data) => {
   return axios.post("api/editor/course/lesson/create", data);
-}
+};
+
+// 'api/course/request/list',course.CourseRequestListAPIView.as_view(),name='course_request_list_api'),
+//      path('api/course/request/create',course.CourseRequestListCreateAPIView.as_view(),name='course_request_create_api'),
+//      path('api/editor/course/request/<int:pk
+
+export const RequestList = ({ queryKey }) => {
+  return axios.get("api/course/request/list");
+};
+
+export const CourseRequestCreate = (data) => {
+  return axios.post("api/course/request/create", data);
+};
+
+export const CourseRequestUpdate = (data) => {
+  console.log(data);
+  return axios.put("api/editor/course/request/" + data.id, data);
+};
+
+export const CourseRequestDelete = (data) => {
+  return axios.delete("api/editor/course/request/" + data.id, data);
+};

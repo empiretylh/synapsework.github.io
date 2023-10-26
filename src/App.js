@@ -19,6 +19,7 @@ import { APIURL } from "./data/data";
 import CourseView from "./components/Course/CourseView";
 import LessonView from "./components/Lessons/LessonVIew";
 import CourseMenu from "./components/Lessons/CourseMenu";
+import CourseRequestView from "./components/CourseRequest/CourseRequest";
 
 axios.defaults.baseURL = APIURL;
 const token = localStorage.getItem("token");
@@ -45,6 +46,10 @@ const router = createBrowserRouter([
   {
     path: "/lesson",
     element: <LessonView />,
+  },
+  {
+    path: "/request",
+    element: <CourseRequestView />,
   },
   {
     path: "/lesson/coursemenu/:id",

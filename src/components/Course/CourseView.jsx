@@ -7,6 +7,7 @@ import CreateCourse from "./Createcourse";
 import EditCourse from "./EditCourse";
 import DeleteCourse from "./DeleteCourse";
 import { assets } from "../../data/data";
+import { numberWithCommas } from "../extra/extra";
 
 const CourseView = () => {
   //   const [course, setCourse] = React.useState([]);
@@ -28,8 +29,6 @@ const CourseView = () => {
   }, [showimage]);
 
   const course_data = useQuery("course", fetchCourses);
-
-
 
   const CourseFilter = useMemo(() => {
     if (course_data.data) {
@@ -61,57 +60,56 @@ const CourseView = () => {
     }
   }, [search, Selected, course_data.data]);
 
-
   const ReloadCourse = () => {
     course_data.refetch();
   };
-  
+
   return (
     <div className="flex font-mono relative h-screen">
       <Navigation />
 
       <div className="flex flex-col  px-5 py-3 w-full relative">
         <div className="flex flex-row justify-between items-center">
-          <h1 className="text-2xl font-semibold">Course</h1>
+          <div className="flex flex-row items-center">
+            <img
+              src={assets.books}
+              className={`w-8 h-8 filter brightness-0 mx-2`}
+              alt={"startup"}
+            />
+            <h1 className="text-2xl font-semibold">Course</h1>
+            <div className="flex flex-row items-center border border-gray-400  rounded-lg justify-self-center ml-6">
+              <input
+                type="text"
+                placeholder="Search Course"
+                className="outline-none w-96 py-2 rounded-lg px-3"
+                autoFocus={true}
+                onChange={(e) => setSearch(e.target.value)}
+              />
+              <img
+                src={assets.search_icon}
+                className="w-5 h-5 mx-2 filter brightness-0"
+                alt="search"
+              />
+            </div>
+            <div className="flex flex-row items-center ml-3">
+              <select
+                name="filter"
+                id="filter"
+                className="border border-gray-400 rounded-lg px-3 py-2 w-64"
+                onChange={(e) => setSelected(e.target.value)}
+              >
+                <option value="all">All</option>
+                <option value="active">Active</option>
+                <option value="inactive">Inactive</option>
+              </select>
+            </div>
+          </div>
           <CreateCourse AfterDone={ReloadCourse} />
         </div>
         <div className="border-b-2 border-gray-300 w-full mt-3"></div>
         <div className="h-full overflow-auto">
           <div className="flex flex-col mt-5">
             {/*Container Start*/}
-            <div className="flex flex-row justify-between items-center">
-              <div className="flex flex-row items-center">
-                <img
-                  src={assets.search_icon}
-                  className="w-5 h-5 mr-2 filter brightness-0 invert"
-                  alt="search"
-                />
-                <input
-                  type="text"
-                  placeholder="Search Course"
-                  className="border border-gray-400 rounded-lg px-3 py-2 w-64"
-                  autoFocus={true}
-                  onChange={(e) => setSearch(e.target.value)}
-                />
-              </div>
-              <div className="flex flex-row items-center">
-                <img
-                  src={assets.filter_icon}
-                  className="w-5 h-5 mr-2 filter brightness-0 invert"
-                  alt="filter"
-                />
-                <select
-                  name="filter"
-                  id="filter"
-                  className="border border-gray-400 rounded-lg px-3 py-2 w-64"
-                  onChange={(e) => setSelected(e.target.value)}
-                >
-                  <option value="all">All</option>
-                  <option value="active">Active</option>
-                  <option value="inactive">Inactive</option>
-                </select>
-              </div>
-            </div>
             {course_data.isLoading ? (
               <div className="flex flex-col mt-5 animate-pulse duration-100">
                 <img
@@ -122,7 +120,7 @@ const CourseView = () => {
                 <p className="text-center">Syncing...</p>
               </div>
             ) : (
-              <div className="flex flex-col mt-5">
+              <div className="flex flex-col">
                 <div className="overflow-x-auto">
                   <div className="py-2 align-middle inline-block min-w-full">
                     <div className="py-2 algin-middle inline-block min-w-full">
@@ -165,8 +163,8 @@ const CourseView = () => {
                                     </div>
                                   </td>
                                   <td className="px-6 py-4 whitespace-nowrap">
-                                    <div className=" text-sm text-gray-900">
-                                      {course.course_price}
+                                    <div className=" text-sm text-gray-900 text-right">
+                                      {numberWithCommas(course.course_price)}
                                     </div>
                                   </td>
                                   <td className="px-6 py-4 whitespace-nowrap">

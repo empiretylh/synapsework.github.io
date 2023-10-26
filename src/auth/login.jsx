@@ -25,10 +25,13 @@ const Login = () => {
 
   const onLogin = (e) => {
     e.preventDefault();
+    // i want to get device name
+    let device = navigator.userAgent;
     axios
       .postForm("/auth/login/", {
         username: username,
         password: password,
+        device : device,
       })
       .then((res) => {
         console.log(res.data);

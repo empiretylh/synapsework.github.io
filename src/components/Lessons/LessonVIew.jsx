@@ -69,45 +69,45 @@ const LessonView = () => {
 
       <div className="flex flex-col  px-5 py-3 w-full relative">
         <div className="flex flex-row justify-between items-center">
-          <h1 className="text-2xl font-semibold">Lesson</h1>
+          <div className="flex flex-row items-center">
+            <img
+              src={assets.lesson}
+              className={`w-8 h-8 filter brightness-0 mx-2`}
+              alt={"startup"}
+            />
+            <h1 className="text-2xl font-semibold">Lesson</h1>
+            <div className="flex flex-row items-center border border-gray-400  rounded-lg justify-self-center ml-6">
+              <input
+                type="text"
+                placeholder="Search Course"
+                className="outline-none w-96 py-2 rounded-lg px-3"
+                autoFocus={true}
+                onChange={(e) => setSearch(e.target.value)}
+              />
+              <img
+                src={assets.search_icon}
+                className="w-5 h-5 mx-2 filter brightness-0"
+                alt="search"
+              />
+            </div>
+            <div className="flex flex-row items-center ml-3">
+              <select
+                name="filter"
+                id="filter"
+                className="border border-gray-400 rounded-lg px-3 py-2 w-64"
+                onChange={(e) => setSelected(e.target.value)}
+              >
+                <option value="all">All</option>
+                <option value="active">Active</option>
+                <option value="inactive">Inactive</option>
+              </select>
+            </div>
+          </div>
         </div>
         <div className="border-b-2 border-gray-300 w-full mt-3"></div>
         <div className="h-full overflow-auto">
           <div className="flex flex-col mt-5">
             {/*Container Start*/}
-            <div className="flex flex-row justify-between items-center">
-              <div className="flex flex-row items-center">
-                <img
-                  src={assets.search_icon}
-                  className="w-5 h-5 mr-2 filter brightness-0 invert"
-                  alt="search"
-                />
-                <input
-                  type="text"
-                  placeholder="Search Course"
-                  className="border border-gray-400 rounded-lg px-3 py-2 w-64"
-                  autoFocus={true}
-                  onChange={(e) => setSearch(e.target.value)}
-                />
-              </div>
-              <div className="flex flex-row items-center">
-                <img
-                  src={assets.filter_icon}
-                  className="w-5 h-5 mr-2 filter brightness-0 invert"
-                  alt="filter"
-                />
-                <select
-                  name="filter"
-                  id="filter"
-                  className="border border-gray-400 rounded-lg px-3 py-2 w-64"
-                  onChange={(e) => setSelected(e.target.value)}
-                >
-                  <option value="all">All</option>
-                  <option value="active">Active</option>
-                  <option value="inactive">Inactive</option>
-                </select>
-              </div>
-            </div>
             {course_data.isLoading ? (
               <div className="flex flex-col mt-5 animate-pulse duration-100">
                 <img
@@ -118,11 +118,11 @@ const LessonView = () => {
                 <p className="text-center">Syncing...</p>
               </div>
             ) : (
-              <div className="flex flex-col mt-5">
+              <div className="flex flex-col mt-2  ">
                 <div className="overflow-x-auto">
                   <div className="py-2 align-middle inline-block min-w-full">
                     <div className="py-2 algin-middle inline-block min-w-full">
-                      <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg grid grid-cols-4 gap-10 ">
+                      <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg grid grid-cols-4 gap-10 px-5 ">
                         {course_data.data &&
                           CourseFilter.map((course, index) => (
                             <CourseItemCardView key={index} data={course} />
@@ -161,12 +161,13 @@ export default LessonView;
 
 const CourseItemCardView = ({ data }) => {
   return (
-    <Link className="flex flex-col w-full h-auto bg-gray-200 my-4 mx-2 text-black rounded transition cursor-pointer drop-shadow-xl border-b-4 border-gray-300 hover:bg-gray-400"
-    to={`/lesson/coursemenu/${data.id}`}
+    <Link
+      className="flex flex-col w-full h-auto bg-gray-200 my-4 mx-2 text-black rounded transition cursor-pointer drop-shadow-xl border-b-4 border-gray-300 hover:bg-gray-400"
+      to={`/lesson/coursemenu/${data.id}`}
     >
       <img
         src={data.coverimage}
-        className="w-full h-auto"
+        className="w-full h-[200px] object-cover"
         alt={data.course_name}
       />
       <div className="flex flex-col p-2">
