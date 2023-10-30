@@ -116,7 +116,7 @@ const LessonView = () => {
                   alt="loading"
                 />
                 <p className="text-center">Syncing...</p>
-              </div>
+             b </div>
             ) : (
               <div className="flex flex-col mt-2  ">
                 <div className="overflow-x-auto">

@@ -20,55 +20,21 @@ import CourseView from "./components/Course/CourseView";
 import LessonView from "./components/Lessons/LessonVIew";
 import CourseMenu from "./components/Lessons/CourseMenu";
 import CourseRequestView from "./components/CourseRequest/CourseRequest";
+import UserView from "./components/User/UserView";
+import NotFound from "./components/Error/Error";
+import AuthProvider from "./auth/AuthProvider";
+import Routes from "./route/route";
 
+//base url
 axios.defaults.baseURL = APIURL;
-const token = localStorage.getItem("token");
-if (token) {
-  axios.defaults.headers.common = { Authorization: `Token ${token}` };
-}
 
-// Create a client
-const queryClient = new QueryClient();
-
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Home />,
-  },
-  {
-    path: "/dashboard",
-    element: <Dashboard />,
-  },
-  {
-    path: "/course",
-    element: <CourseView />,
-  },
-  {
-    path: "/lesson",
-    element: <LessonView />,
-  },
-  {
-    path: "/request",
-    element: <CourseRequestView />,
-  },
-  {
-    path: "/lesson/coursemenu/:id",
-    element: <CourseMenu />,
-  },
-  {
-    path: "/auth/login",
-    element: <Login />,
-  },
-  {
-    path: "/auth/register",
-    element: <Register />,
-  },
-]);
-
+const client = new QueryClient();
 const App = () => {
   return (
-    <QueryClientProvider client={queryClient}>
-      <RouterProvider router={router} />
+    <QueryClientProvider client={client}>
+      <AuthProvider>
+        <Routes />
+      </AuthProvider>
     </QueryClientProvider>
   );
 };

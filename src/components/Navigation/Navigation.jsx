@@ -68,20 +68,29 @@ const Navigation = () => {
             className={`flex flex-col items-center py-2 px-2 my-2 rounded-lg hover:bg-gray-800 cursor-pointer ${
               item.link === nav_select && "bg-gray-800"
             }`}
-          to={item.link}
+            to={item.link}
           >
             <img
               src={item.img}
               className={`w-6 h-6 filter brightness-0 invert mb-3`}
               alt={item.name}
             />
-            <p
-              className={'text-[11px]'}
-            >
-              {item.name}
-            </p>
+            <p className={"text-[11px]"}>{item.name}</p>
           </Link>
         ))}
+      </ul>
+      <ul className="mt-auto px-2">
+        <Link
+          className={`flex flex-col items-center py-2 px-2 my-2 rounded-lg hover:bg-gray-800 cursor-pointer`}
+          to={"/settings"}
+        >
+          <img
+            src={assets.setting}
+            className={`w-6 h-6 filter brightness-0 invert mb-3`}
+            alt={"setting"}
+          />
+          <p className={"text-[11px]"}>{"Settings"}</p>
+        </Link>
       </ul>
     </div>
   );

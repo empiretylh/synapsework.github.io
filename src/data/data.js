@@ -10,6 +10,7 @@ export const assets = {
     startup : require("../assets/icon/startup.png"),
     user : require("../assets/icon/user.png"),
     lesson : require("../assets/icon/layers.png"),
+    setting: require("../assets/icon/setting.png"),
 
     add_icon : require("../assets/icon/more.png"),
     edit_icon : require("../assets/icon/editing.png"),
@@ -20,6 +21,13 @@ export const assets = {
     newdocument_icon : require("../assets/icon/new-document.png"),
     addcatgory_icon : require("../assets/icon/menu.png"),
     markdown_icon : require("../assets/icon/markdown.png"),
+
+    _3dot_icon:require("../assets/icon/dots.png"),
+    
+    admin_icon :require("../assets/icon/admin.png"),
+    editor_icon :require("../assets/icon/editor.png"),
+    password_icon :require("../assets/icon/padlock.png"),
+
 
 
 }

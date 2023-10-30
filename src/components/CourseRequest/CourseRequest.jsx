@@ -168,9 +168,9 @@ const CourseRequestView = () => {
         </div>
         <div className="border-b-2 border-gray-300 w-full mt-3"></div>
         <div className="flex" style={{ height: "calc(100vh - 70px)" }}>
-          <div className="flex flex-col mt-5">
+          <div className="flex flex-col mt-5  w-full">
             {/*Container Start*/}
-            <div className="flex flex-row justify-center items-center"></div>
+            <div className="flex flex-row justify-center items-center w-full"></div>
             {request_data.isLoading ? (
               <div className="flex flex-col mt-5 animate-pulse duration-100">
                 <img

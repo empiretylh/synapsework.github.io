@@ -53,3 +53,18 @@ export const CourseRequestUpdate = (data) => {
 export const CourseRequestDelete = (data) => {
   return axios.delete("api/editor/course/request/" + data.id, data);
 };
+
+// users....................
+export const UserList = ({ queryKey }) => {
+  const [_, type] = queryKey;
+  return axios.get("api/user/?type="+type);
+};
+
+
+export const UserUpdate = (data) => {
+  return axios.put("api/user/?id=" + data.id, data);
+}
+
+export const UserDelete =  (data)=>{
+  return axios.delete("api/user/?id=" + data.id, data);
+}

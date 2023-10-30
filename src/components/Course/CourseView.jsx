@@ -108,7 +108,7 @@ const CourseView = () => {
         </div>
         <div className="border-b-2 border-gray-300 w-full mt-3"></div>
         <div className="h-full overflow-auto">
-          <div className="flex flex-col mt-5">
+          <div className="flex flex-col mt-5 w-full">
             {/*Container Start*/}
             {course_data.isLoading ? (
               <div className="flex flex-col mt-5 animate-pulse duration-100">
