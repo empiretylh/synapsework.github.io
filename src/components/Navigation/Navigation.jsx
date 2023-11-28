@@ -28,6 +28,11 @@ const nav = [
     link: "/request",
   },
   {
+    name: "Noti",
+    img: assets.noti_icon,
+    link: "/notification",
+  },
+  {
     name: "User",
     img: assets.user,
     link: "/user",

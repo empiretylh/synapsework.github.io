@@ -20,6 +20,7 @@ const UserView = () => {
   const [search, setSearch] = React.useState("");
   const [SelectedData, setSelectedData] = React.useState([]);
   const [editShowModal, seteditShowModal] = React.useState(false);
+  const [wDelete, setWDelete] = React.useState(false);
 
   const [showMore, setShowMore] = React.useState(false);
 
@@ -142,6 +143,9 @@ const UserView = () => {
       label: "Delete User",
       icon: assets.delete_icon,
       onClick: () => {
+        // alert are you sure want to delete
+        setWDelete(true);
+
         user_delete.mutate({
           id: SelectedData.id,
         });

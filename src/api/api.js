@@ -68,3 +68,14 @@ export const UserUpdate = (data) => {
 export const UserDelete =  (data)=>{
   return axios.delete("api/user/?id=" + data.id, data);
 }
+
+// devices
+export const DeviceLists = (data)=>{
+  return axios.get("api/editor/device/list");
+}
+
+//notifications
+
+export const createNotification = (data)=>{
+  return axios.post("api/editor/notification/create",data);
+}

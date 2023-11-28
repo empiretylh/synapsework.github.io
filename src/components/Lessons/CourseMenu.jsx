@@ -38,7 +38,9 @@ const CourseMenu = () => {
     };
   }, [showimage]);
 
-  const course_menu_data = useQuery(["course_menu", id], fetchCourseMenu);
+  const course_menu_data = useQuery(["course_menu", id], fetchCourseMenu,{
+    enabled:false
+  });
 
   const course_data = useQuery(["course", id], fetchCoursesWithid);
   const [lessonEnabled, setLessonEnabled] = React.useState(false);
@@ -99,7 +101,6 @@ const CourseMenu = () => {
     onSuccess: (res) => {
       console.log(res.data);
       console.log("lesson create success");
-      ReloadCourseMenu();
       ReloadLesson();
       //Update the last  LessonData with res.data
       setLessonsData((prev) => {

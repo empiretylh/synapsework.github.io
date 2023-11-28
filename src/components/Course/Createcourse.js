@@ -13,6 +13,8 @@ const CreateCourse = ({ AfterDone = () => {}, AfterCancel = () => {} }) => {
   const [description, setdescription] = useState("");
   const [avaliable, setavaliable] = useState(false);
   const [coverimage, setcoverimage] = useState("");
+  const [telegram, setTelegram] = useState("");
+  const [semester, setSemester] = useState("Semester 1");
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -27,6 +29,8 @@ const CreateCourse = ({ AfterDone = () => {}, AfterCancel = () => {} }) => {
     formData.append("course_price", course_price);
     formData.append("description", description);
     formData.append("avaliable", avaliable);
+    formData.append("telegram", telegram);
+    formData.append("semester", semester);
     axios
       .post("/api/editor/course", formData, {
         headers: {
@@ -54,7 +58,7 @@ const CreateCourse = ({ AfterDone = () => {}, AfterCancel = () => {} }) => {
         setShowModal(false);
       }
       //Alt + c to open setshowmodal true
-      if(event.key === "c" && event.altKey) setShowModal(prev=> !prev);
+      if (event.key === "c" && event.altKey) setShowModal((prev) => !prev);
     };
     document.addEventListener("keydown", handleKeyDown);
     return () => {
@@ -77,13 +81,16 @@ const CreateCourse = ({ AfterDone = () => {}, AfterCancel = () => {} }) => {
       </button>
 
       <>
-    
         <div
           className={`justify-center items-center flex overflow-x-hidden overflow-y-hidden fixed inset-0 z-50 outline-none focus:outline-none scale-0 origin-center ${
             showModal && "scale-100"
           } duration-300 `}
-        >  {showModal &&   <div className="bg-black opacity-80 w-full h-full absolute inset-0"></div>}
-           <div className="relative w-auto my-6 mx-auto max-w-3xl md:max-w-sm sm:max-w-sm">
+        >
+          {" "}
+          {showModal && (
+            <div className="bg-black opacity-80 w-full h-full absolute inset-0 overflow-auto"></div>
+          )}
+          <div className="relative ">
             {/*content*/}
             <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white  text-black outline-none focus:outline-none">
               {/*header*/}
@@ -102,52 +109,83 @@ const CreateCourse = ({ AfterDone = () => {}, AfterCancel = () => {} }) => {
               </div>
               {/*body*/}
               <div className="relative p-6 flex-auto">
-                <form onSubmit={onSubmit}>
-                  <h4 className="text-base font-bold">Course Name</h4>
-                  <input
-                    className="w-full bg-white text-black border border-gray-700  rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                    type="text"
-                    placeholder="Course Name"
-                    onChange={(e) => setcourse_name(e.target.value)}
-                    autoFocus={showModal}
-                  />
-                  <h4 className="text-base font-bold">Short Name</h4>
-                  <input
-                    className="w-full bg-white text-black border border-gray-700  rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                    type="text"
-                    placeholder="Short Name"
-                    onChange={(e) => setshort_name(e.target.value)}
-                  />
-                  <h4 className="text-base font-bold">Course Price</h4>
-                  <input
-                    className="w-full bg-white text-black border border-gray-700  rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                    type="text"
-                    placeholder="Course Price"
-                    onChange={(e) => setcourse_price(e.target.value)}
-                  />
-                  <h4 className="text-base font-bold">Description</h4>
-                  <input
-                    className="w-full bg-white text-black border border-gray-700  rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                    type="textarea"
-                    placeholder="Description"
-                    onChange={(e) => setdescription(e.target.value)}
-                  />
-
-                  <h4 className="text-base font-bold">Cover Image</h4>
-                  <input
-                    className="w-full bg-white text-black border border-gray-700  rounded py-2 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                    type="file"
-                    placeholder="Cover Image"
-                    onChange={(e) => setcoverimage(e.target.files[0])}
-                  />
-
-                  <div className="flex items-center justify-between bg-slate-100 p-2">
-                    <h4 className="text-base font-bold">Avaliable</h4>
+                <form onSubmit={onSubmit} className="grid grid-cols-2 gap-2">
+                  <div>
+                    <h4 className="text-base font-bold">Course Name</h4>
                     <input
-                      type="checkbox"
-                      className="form-checkbox h-5 w-5 text-gray-600"
-                      onChange={(e) => setavaliable(e.target.value)}
+                      className="w-full bg-white text-black border border-gray-700  rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                      type="text"
+                      placeholder="Course Name"
+                      onChange={(e) => setcourse_name(e.target.value)}
+                      autoFocus={showModal}
                     />
+                    <h4 className="text-base font-bold">Short Name</h4>
+                    <input
+                      className="w-full bg-white text-black border border-gray-700  rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                      type="text"
+                      placeholder="Short Name"
+                      onChange={(e) => setshort_name(e.target.value)}
+                    />
+                    <h4 className="text-base font-bold">Course Price</h4>
+                    <input
+                      className="w-full bg-white text-black border border-gray-700  rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                      type="text"
+                      placeholder="Course Price"
+                      onChange={(e) => setcourse_price(e.target.value)}
+                    />
+                    <h4 className="text-base font-bold">
+                      Telegram Group or Channel
+                    </h4>
+                    <input
+                      className="w-full bg-white text-black border border-gray-700  rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                      type="text"
+                      placeholder="Telegram Group or Channel"
+                      onChange={(e) => setTelegram(e.target.value)}
+                    />
+                  </div>
+                  <div>
+                    <h4 className="text-base font-bold">Semester</h4>
+                    <select
+                      onChange={(e) => setSemester(e.target.value)}
+                      className="w-full bg-white text-black border border-gray-700  rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                    >
+                      <option value="Semester 1">Semester 1</option>
+                      <option value="Semester 2">Semester 2</option>
+                      <option value="Semester 3">Semester 3</option>
+                      <option value="Semester 4">Semester 4</option>
+                      <option value="Semester 5">Semester 5</option>
+                      <option value="Semester 6">Semester 6</option>
+                      <option value="Semester 7">Semester 7</option>
+                      <option value="Semester 8">Semester 8</option>
+                      <option value="Semester 9">Semester 9</option>
+                      <option value="Semester 10">Semester 10</option>
+                      <option value="other">Other</option>
+                    </select>
+
+                    <h4 className="text-base font-bold">Description</h4>
+                    <input
+                      className="w-full bg-white text-black border border-gray-700  rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                      type="textarea"
+                      placeholder="Description"
+                      onChange={(e) => setdescription(e.target.value)}
+                    />
+
+                    <h4 className="text-base font-bold">Cover Image</h4>
+                    <input
+                      className="w-full bg-white text-black border border-gray-700  rounded py-2 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                      type="file"
+                      placeholder="Cover Image"
+                      onChange={(e) => setcoverimage(e.target.files[0])}
+                    />
+
+                    <div className="flex items-center justify-between bg-slate-100 p-2">
+                      <h4 className="text-base font-bold">Avaliable</h4>
+                      <input
+                        type="checkbox"
+                        className="form-checkbox h-5 w-5 text-gray-600"
+                        onChange={(e) => setavaliable(e.target.value)}
+                      />
+                    </div>
                   </div>
                   {/*footer*/}
                   <div className="flex items-center justify-end mt-3 border-t border-solid border-blueGray-200 rounded-b">

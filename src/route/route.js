@@ -11,6 +11,7 @@ import LessonView from "../components/Lessons/LessonVIew";
 import CourseRequestView from "../components/CourseRequest/CourseRequest";
 import CourseMenu from "../components/Lessons/CourseMenu";
 import NotFound from "../components/Error/Error";
+import NotificationView from "../components/Notification/Notification";
 
 const Routes = () => {
   const { token } = useAuth();
@@ -42,6 +43,10 @@ const Routes = () => {
         {
           path: "/request",
           element: <CourseRequestView />,
+        },
+         {
+          path: "/notification",
+          element: <NotificationView />,
         },
         {
           path: "/lesson/coursemenu/:id",

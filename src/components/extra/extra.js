@@ -29,3 +29,8 @@ export const validatePassword = (password) => {
   var re = /^\d{6,20}$/;
   return re.test(password);
 };
+
+export const isValidFCMToken = (token) => {
+  if(!token) return false;
+  return /^[a-zA-Z0-9:_-]+$/.test(token)
+};

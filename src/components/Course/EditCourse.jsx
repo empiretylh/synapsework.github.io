@@ -13,6 +13,8 @@ const EditCourse = ({ data, AfterDone = () => {}, AfterCancel = () => {} }) => {
   const [description, setdescription] = useState(data.description);
   const [avaliable, setavaliable] = useState(data.avaliable);
   const [coverimage, setcoverimage] = useState(data.coverimage);
+  const [telegram, setTelegram] = useState(data.telegram);
+  const [semester, setSemester] = useState(data.semester);
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -26,6 +28,9 @@ const EditCourse = ({ data, AfterDone = () => {}, AfterCancel = () => {} }) => {
     formData.append("course_price", course_price);
     formData.append("description", description);
     formData.append("avaliable", avaliable);
+    formData.append("telegram", telegram);
+    formData.append("semester", semester);
+
     axios
       .put(`/api/editor/course/${data.id}`, formData, {
         headers: {
@@ -69,14 +74,15 @@ const EditCourse = ({ data, AfterDone = () => {}, AfterCancel = () => {} }) => {
       />
       {data ? (
         <>
-        {showModal && <div className="bg-black opacity-80 w-full h-full absolute inset-0"></div>}
+          {showModal && (
+            <div className="bg-black opacity-80 w-full h-full absolute inset-0"></div>
+          )}
           <div
             className={`justify-center items-center flex overflow-x-hidden overflow-y-hidden fixed inset-0 z-50 outline-none focus:outline-none scale-0 origin-center ${
               showModal && "scale-100"
             } duration-300 `}
           >
-      
-            <div className="relative w-auto my-6 mx-auto max-w-3xl md:max-w-sm sm:max-w-sm">
+            <div className="relative">
               {/*content*/}
               <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white  text-black outline-none focus:outline-none">
                 {/*header*/}
@@ -95,7 +101,8 @@ const EditCourse = ({ data, AfterDone = () => {}, AfterCancel = () => {} }) => {
                 </div>
                 {/*body*/}
                 <div className="relative p-6 flex-auto">
-                  <form onSubmit={onSubmit}>
+                  <form onSubmit={onSubmit} className="grid grid-cols-2 gap-2">
+                  <div>
                     <h4 className="text-base font-bold">Course Name</h4>
                     <input
                       className="w-full bg-white text-black border border-gray-700  rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
@@ -120,6 +127,39 @@ const EditCourse = ({ data, AfterDone = () => {}, AfterCancel = () => {} }) => {
                       defaultValue={course_price}
                       onChange={(e) => setcourse_price(e.target.value)}
                     />
+                    <h4 className="text-base font-bold">
+                      Telegram Group or Channel
+                    </h4>
+                    <input
+                      className="w-full bg-white text-black border border-gray-700  rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                      type="text"
+                      placeholder="Telegram Group or Channel"
+                      defaultValue={telegram}
+                      onChange={(e) => setTelegram(e.target.value)}
+                    />
+
+                    </div>
+                    <div>
+                    <h4 className="text-base font-bold">
+                   Semester
+                  </h4>
+                     <select
+                     defaultValue={semester}
+                    onChange={(e) => setSemester(e.target.value)}
+                    className="w-full bg-white text-black border border-gray-700  rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                  >
+                    <option value="Semester 1">Semester 1</option>
+                    <option value="Semester 2">Semester 2</option>
+                    <option value="Semester 3">Semester 3</option>
+                    <option value="Semester 4">Semester 4</option>
+                    <option value="Semester 5">Semester 5</option>
+                    <option value="Semester 6">Semester 6</option>
+                    <option value="Semester 7">Semester 7</option>
+                    <option value="Semester 8">Semester 8</option>
+                    <option value="Semester 9">Semester 9</option>
+                    <option value="Semester 10">Semester 10</option>
+                    <option value="other">Other</option>
+                  </select>
                     <h4 className="text-base font-bold">Description</h4>
                     <input
                       className="w-full bg-white text-black border border-gray-700  rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
@@ -146,13 +186,14 @@ const EditCourse = ({ data, AfterDone = () => {}, AfterCancel = () => {} }) => {
                         onChange={(e) => setavaliable(e.target.value)}
                       />
                     </div>
+                    </div>
                     {/*footer*/}
                     <div className="flex items-center justify-end mt-3 border-t border-solid border-blueGray-200 rounded-b">
                       <button
                         className="bg-slate-600 hover:bg-slate-400 text-white font-bold py-2 px-4 rounded w-full"
                         type="submit"
                       >
-                       Update Course
+                        Update Course
                       </button>
                     </div>
                   </form>
