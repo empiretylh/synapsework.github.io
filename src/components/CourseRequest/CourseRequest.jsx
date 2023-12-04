@@ -40,7 +40,8 @@ const CourseRequestView = () => {
       const filter = data.filter((item) => item.confirm === true);
       let total = 0;
       filter.forEach((item) => {
-        total += parseInt(item.coursename.course_price, 10);
+        total += parseInt(item.payment_amount, 10);
+        // console.log()
       });
       return total;
     }

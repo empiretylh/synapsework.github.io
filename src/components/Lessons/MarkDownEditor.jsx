@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Markdown from "markdown-to-jsx";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
+import TextEditor from "./AceEditor/AceEditor";
 const Code = ({ children = "", ...props }) => {
   const isMultiLine = children.split("\n").length > 1;
 
@@ -32,20 +33,29 @@ function getLanguagesFromMarkdown(markdown) {
   return languages;
 }
 
-function MarkdownEditor({ markdown, setMarkdown }) {
+function MarkdownEditor({ markdown, setMarkdown, style }) {
   const languages = getLanguagesFromMarkdown(markdown);
   console.log("Languages: ", languages);
 
+
+
   return (
-    <div className="h-full">
-      <div className="flex h-full">
-        <textarea
+    <div className="h-full" style={{
+      backgroundColor:'#f0f0f0'
+    }}>
+      <div className="flex h-full" style={{
+        boxSizing: "border-box",
+      }}>
+        {/* <textarea
           className="flex-1 p-2 mr-2 bg-gray-900 text-white h-full"
           value={markdown}
           onChange={(e) => setMarkdown(e.target.value)}
           tabIndex="0"
-        />
-        <div className="flex-1 p-2 border rounded overflow-auto bg-white">
+        /> */}
+        <TextEditor value={markdown} setValue={setMarkdown} />
+
+
+        <div className="flex-1 h-full" style={{ maxWidth: 500, overflow: 'auto' }}>
           <Markdown
             options={{
               overrides: {

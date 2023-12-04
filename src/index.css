@@ -36,3 +36,24 @@ code {
   border: 1px solid #ccc;
   border-radius: 0.25rem;
 }
+
+
+* {
+  /* width:800px; */
+  scrollbar-width: thin !important;
+  scrollbar-color: rgba(51, 50, 50, 0.1) transparent !important;
+}
+
+*::-webkit-scrollbar {
+  width: 12px !important;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent !important;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: rgba(182, 174, 174, 0.1) !important;
+  border-radius: 20px;
+  border: 3px solid transparent;
+}

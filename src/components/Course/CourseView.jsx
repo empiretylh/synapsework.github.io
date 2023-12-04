@@ -133,7 +133,7 @@ const CourseView = () => {
                               <th className="px-6 py-3">Short Name</th>
                               <th className="px-6 py-3">Price</th>
                               <th className="px-6 py-3">Creator</th>
-                              <th className="px-6 py-3">Description</th>
+                              <th className="px-6 py-3" style={{maxWidth:200}}>Description</th>
                               <th className="px-6 py-3">Status</th>
                               <th className="px-6 py-3">Action</th>
                             </tr>
@@ -172,7 +172,7 @@ const CourseView = () => {
                                       {course.created_by}
                                     </div>
                                   </td>
-                                  <td className="px-6 py-4 whitespace-nowrap">
+                                  <td className="px-6 py-4" style={{maxWidth:200}}>
                                     <div className=" text-sm text-gray-900">
                                       {course.description}
                                     </div>

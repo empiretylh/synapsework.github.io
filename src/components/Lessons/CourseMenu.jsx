@@ -38,8 +38,8 @@ const CourseMenu = () => {
     };
   }, [showimage]);
 
-  const course_menu_data = useQuery(["course_menu", id], fetchCourseMenu,{
-    enabled:false
+  const course_menu_data = useQuery(["course_menu", id], fetchCourseMenu, {
+    enabled: false
   });
 
   const course_data = useQuery(["course", id], fetchCoursesWithid);
@@ -85,11 +85,12 @@ const CourseMenu = () => {
   const [isAutoSave, setIsAutoSave] = React.useState(false);
   const [selectedOrder, setSelectedOrder] = React.useState(0);
   const [titleEditable, setTitleEditable] = React.useState(false);
-  const markdownRef = React.useRef(markdown);
+  const markdownRef = React.useRef(markdown);  
 
   React.useEffect(() => {
     markdownRef.current = markdown;
   }, [markdown]);
+
 
   const lessonSave = useMutation(UpdateLesson, {
     onSuccess: () => {
@@ -146,7 +147,7 @@ const CourseMenu = () => {
   };
 
   //Ctrl + S to save if the lession title has
- 
+
   React.useEffect(() => {
     const handleKeyDown = (event) => {
       if (event.ctrlKey && event.key === "s") {
@@ -203,6 +204,11 @@ const CourseMenu = () => {
     lesson_data.refetch();
   };
 
+  React.useEffect(() => {
+    ReloadCourseMenu();
+    ReloadLesson();
+  }, [])
+
   //Search to filter the lessonsData
   React.useEffect(() => {
     if (search) {
@@ -235,9 +241,8 @@ const CourseMenu = () => {
       <div className="flex flex-row items-center">
         <input
           type="text"
-          className={`w-[150px] h-9 rounded-md focus:outline-none px-2 bg-transparent mr-4 ${
-            titleEditable ? "bg-white text-black" : "text-white"
-          }`}
+          className={`w-[150px] h-9 rounded-md focus:outline-none px-2 bg-transparent mr-4 ${titleEditable ? "bg-white text-black" : "text-white"
+            }`}
           value={selectedTitle}
           contentEditable={titleEditable}
           onDoubleClick={(event) => {
@@ -353,11 +358,10 @@ const CourseMenu = () => {
                         ref={provided.innerRef}
                         {...provided.draggableProps}
                         {...provided.dragHandleProps}
-                        className={`flex flex-row items-center justify-between px-4 py-2 text-white hover:bg-gray-500 ${
-                          item.id === selectedLesson
-                            ? "bg-gray-700 text-yellow-200 border-blue-500 border-y-2  "
-                            : ""
-                        }`}
+                        className={`flex flex-row items-center justify-between px-4 py-2 text-white hover:bg-gray-500 ${item.id === selectedLesson
+                          ? "bg-gray-700 text-yellow-200 border-blue-500 border-y-2  "
+                          : ""
+                          }`}
                         onClick={() => {
                           setSelectedLesson(item.id);
                           setMarkdown(item.content);
@@ -432,7 +436,7 @@ const CourseMenu = () => {
               <h2 className="text-lg text-center bg-gray-800 text-white">
                 {course_data.data && Course_Data.course_name}
               </h2>
-            
+
             </div>
             {/* Search Bar */}
             <div className="flex flex-col p-4">
@@ -454,15 +458,17 @@ const CourseMenu = () => {
             {LessonView()}
           </div>
           <div className="flex flex-col h-full w-full bg-gray-900">
-            {" "}
             {/*Content View */}
             {ContentView()}
             {/* Markdown View */}
             <div
               className="flex-grow flex-shrink-0"
-              style={{ height: "calc(100vh - 200px)", overflowY: "auto" }}
+              style={{ height: "calc(100vh - 200px)", overflowY: "auto", overflowX: "hidden" }}
             >
-              <MarkdownEditor markdown={markdown} setMarkdown={setMarkdown} />
+              <MarkdownEditor markdown={markdown} setMarkdown={setMarkdown} style={{
+                boxSizing: "border-box",
+                width: '100%',
+              }} />
             </div>
           </div>
         </div>

@@ -1,6 +1,7 @@
 // export const APIURL = "http://127.0.0.1:8000";
-// export const APIURL = "http://192.168.43.181:8000";
-export const APIURL =  "http://192.168.100.63:8000";
+export const APIURL = "http://192.168.43.181:8000";
+// export const APIURL =  "http://192.168.100.63:8000";
+// export const APIURL = 'https://synapsework.pythonanywhere.com'
 
 export const assets = {
   mainicon: require("../assets/icon.png"),
