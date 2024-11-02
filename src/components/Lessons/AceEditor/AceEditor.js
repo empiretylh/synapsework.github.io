@@ -3,6 +3,7 @@ import AceEditor from 'react-ace';
 
 import 'ace-builds/src-noconflict/mode-markdown';
 import 'ace-builds/src-noconflict/theme-github_dark';
+import 'ace-builds/src-noconflict/theme-clouds_midnight';
 
 function TextEditor({ value, setValue }) {
 
